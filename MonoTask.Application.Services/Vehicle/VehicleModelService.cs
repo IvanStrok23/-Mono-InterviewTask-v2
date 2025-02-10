@@ -10,11 +10,11 @@ using MonoTask.Infrastructure.Data.StaticData;
 namespace MonoTask.Application.Services.Vehicle;
 public class VehicleModelService : IVehicleModelService
 {
-    private readonly IDataContext _dbContext;
+    private readonly IDataContext _context;
     private readonly IMapper _mapper;
     public VehicleModelService(IDataContext vehiclesDbContext, IMapper mapper)
     {
-        _dbContext = vehiclesDbContext;
+        _context = vehiclesDbContext;
         _mapper = mapper;
     }
 
@@ -25,20 +25,20 @@ public class VehicleModelService : IVehicleModelService
             return 0;
         }
         VehicleModelEntity mapped = _mapper.Map<VehicleModelEntity>(entity);
-        mapped.VehicleBrand = _dbContext.VehicleBrands.Where(i => i.Id == entity.MakeId).FirstOrDefault();
-        return await _dbContext.Insert(mapped);
+        mapped.VehicleBrand = _context.VehicleBrands.Where(i => i.Id == entity.BrandId).FirstOrDefault();
+        return await _context.Insert(mapped);
     }
 
     public async Task<VehicleModel> GetModelById(int id)
     {
-        var query = await _dbContext.VehicleModels.Where(m => m.Id == id).Include(m => m.VehicleBrand).FirstOrDefaultAsync();
+        var query = await _context.VehicleModels.Where(m => m.Id == id).Include(m => m.VehicleBrand).FirstOrDefaultAsync();
         return _mapper.Map<VehicleModel>(query);
     }
 
     public async Task<List<VehicleModel>> GetModels(PagingParams pagingParams)
     {
 
-        var query = _dbContext.VehicleModels.
+        var query = _context.VehicleModels.
             Include(m => m.VehicleBrand)
             .AsQueryable();
 
@@ -50,7 +50,7 @@ public class VehicleModelService : IVehicleModelService
 
     public async Task<bool> UpdateModel(VehicleModel model)
     {
-        VehicleModelEntity temp = _dbContext.VehicleModels.Where(i => i.Id == model.Id).FirstOrDefault();
+        VehicleModelEntity temp = _context.VehicleModels.Where(i => i.Id == model.Id).FirstOrDefault();
 
         if (temp == null)
         {
@@ -59,9 +59,9 @@ public class VehicleModelService : IVehicleModelService
         else
         {
             temp.Name = model.Name;
-            temp.VehicleBrand = _dbContext.VehicleBrands.Where(i => i.Id == model.MakeId).FirstOrDefault();
+            temp.VehicleBrand = _context.VehicleBrands.Where(i => i.Id == model.BrandId).FirstOrDefault();
             temp.Year = model.Year;
-            await _dbContext.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return true;
         }
 
@@ -69,12 +69,12 @@ public class VehicleModelService : IVehicleModelService
 
     public async Task<bool> DeleteModel(int id)
     {
-        var toRemove = await Task.Run(() => _dbContext.VehicleModels.FindAsync(id)).Result;
+        var toRemove = await Task.Run(() => _context.VehicleModels.FindAsync(id)).Result;
         if (toRemove == null)
         {
             return false;
         }
-        return await _dbContext.Remove(toRemove);
+        return await _context.Remove(toRemove);
     }
 
     private void sortByColumn(ref IQueryable<VehicleModelEntity> query, SortbyEnum sortBy, SortOrderEnum sortOrder)
@@ -113,13 +113,13 @@ public class VehicleModelService : IVehicleModelService
 
         foreach (var make in makes)
         {
-            var existingMake = await _dbContext.VehicleBrands
+            var existingMake = await _context.VehicleBrands
                 .FirstOrDefaultAsync(b => b.Name == make.Name);
 
             if (existingMake == null)
             {
-                _dbContext.VehicleBrands.Add(make);
-                await _dbContext.SaveChangesAsync();
+                _context.VehicleBrands.Add(make);
+                await _context.SaveChangesAsync();
                 existingMake = make;
             }
 
@@ -127,17 +127,17 @@ public class VehicleModelService : IVehicleModelService
 
             foreach (var model in models)
             {
-                var existingModel = await _dbContext.VehicleModels
+                var existingModel = await _context.VehicleModels
                     .FirstOrDefaultAsync(m => m.Name == model.Name && m.Year == model.Year && m.VehicleBrandId == existingMake.Id);
 
                 if (existingModel == null)
                 {
                     model.VehicleBrandId = existingMake.Id;
-                    _dbContext.VehicleModels.Add(model);
+                    _context.VehicleModels.Add(model);
                 }
             }
         }
 
-        await _dbContext.SaveChangesAsync();
+        await _context.SaveChangesAsync();
     }
 }

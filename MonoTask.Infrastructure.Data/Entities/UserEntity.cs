@@ -10,6 +10,9 @@ public class UserEntity : BaseEntity, IEntity
     public UserRoles Roles { get; set; }
     public string Token { get; set; }
 
+    //todo: is this needed?
+    public ICollection<UserVehicle> UserVehicles { get; set; } = new List<UserVehicle>();
+
     public UserEntity()
     {
         Token = Guid.NewGuid().ToString();

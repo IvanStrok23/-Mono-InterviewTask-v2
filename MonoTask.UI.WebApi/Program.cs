@@ -6,6 +6,7 @@ builder.Services.AddControllers();
 builder.Services.AddSwaggerDocumentation();
 builder.Services.AddAutoMapperServices();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddAutoMapper();
 builder.Services.AddDatabaseContext(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddScoped<IUserPrincipal, UserPrincipal>();
 builder.Services.AddAuthenticationServices();

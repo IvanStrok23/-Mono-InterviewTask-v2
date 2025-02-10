@@ -4,7 +4,7 @@ using MonoTask.Infrastructure.Data.Entities;
 
 namespace MonoTask.Infrastructure.Data.Mappers;
 
-public class UserEntityMappings : IEntityTypeConfiguration<UserEntity>
+public class UserEntityMapper : IEntityTypeConfiguration<UserEntity>
 {
     public void Configure(EntityTypeBuilder<UserEntity> builder)
     {
@@ -20,6 +20,10 @@ public class UserEntityMappings : IEntityTypeConfiguration<UserEntity>
         builder.Property(u => u.Token)
                .IsRequired()
                .HasDefaultValueSql("NEWID()");
+
+        builder.HasMany(u => u.UserVehicles)
+               .WithOne(uv => uv.User)
+               .HasForeignKey(uv => uv.UserId);
 
         builder.ToTable("Users");
     }

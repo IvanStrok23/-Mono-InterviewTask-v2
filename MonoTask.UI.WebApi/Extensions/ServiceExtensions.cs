@@ -4,12 +4,15 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using MonoTask.Application.Services;
+using MonoTask.Application.Services.Client;
 using MonoTask.Application.Services.Vehicle;
+using MonoTask.Core.Interfaces.Client;
 using MonoTask.Core.Interfaces.Services;
 using MonoTask.Infrastructure.Data.DbContexts;
 using MonoTask.Infrastructure.Data.Interfaces;
 using MonoTask.UI.WebApi.Auth;
 using MonoTask.UI.WebApi.Auth.Handlers;
+using MonoTask.UI.WebApi.AutoMapper;
 
 public static class ServiceExtensions
 {
@@ -62,6 +65,11 @@ public static class ServiceExtensions
         services.AddScoped<CustomAuthenticationFunctionHandler>();
     }
 
+    public static void AddAutoMapper(this IServiceCollection services)
+    {
+        services.AddAutoMapper(typeof(AutoMapperProfile));
+    }
+
     public static void AddAuthorizationServices(this IServiceCollection services)
     {
         services.AddAuthorization(options =>
@@ -77,6 +85,7 @@ public static class ServiceExtensions
         services.AddScoped<IUserServices, UserServices>();
         services.AddScoped<IVehicleModelService, VehicleModelService>();
         services.AddScoped<IVehicleBrandService, VehicleBrandService>();
+        services.AddScoped<IClientVehicleServices, ClientVehicleServices>();
     }
 
     public static void AddAutoMapperServices(this IServiceCollection services)

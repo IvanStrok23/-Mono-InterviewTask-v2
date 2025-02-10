@@ -11,5 +11,7 @@ public class VehicleModelEntity : BaseEntity, IEntity
     public int VehicleBrandId { get; set; }
     public virtual VehicleBrandEntity VehicleBrand { get; set; }
 
+    public ICollection<UserVehicle> UserVehicles { get; set; } = new List<UserVehicle>();
+
     public int GetId() => Id;
 }

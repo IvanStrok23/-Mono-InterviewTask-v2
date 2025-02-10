@@ -28,7 +28,6 @@ namespace MonoTask.UI.WebApi.Controllers
 
 
             var user = await _userService.InsertUser(registrationDto.Name);
-            // Return the token for further authenticated requests
             return Ok(new { Token = user.Token, UserId = user.Id });
         }
     }
