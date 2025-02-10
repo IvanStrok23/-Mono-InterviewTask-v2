@@ -1,0 +1,6 @@
+@MonoTask.UI.WebApi_HostAddress = http://localhost:5157
+
+GET {{MonoTask.UI.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

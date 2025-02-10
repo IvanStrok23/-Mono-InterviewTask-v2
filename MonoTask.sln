@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTask.Core.Interfaces", "MonoTask.Core.Services\MonoTask.Core.Interfaces.csproj", "{917E6507-ED0D-4233-8661-C0E2C33B976D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTask.Core.Entities", "Core.Entities\MonoTask.Core.Entities.csproj", "{7A173527-744A-4055-A11C-D3D3676FCEA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTask.Core.Models", "MonoTask.Core.Models\MonoTask.Core.Models.csproj", "{CEA6D788-954A-402A-9CB0-E83B3B5628AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTask.Application.Services", "MonoTask.Application.Services\MonoTask.Application.Services.csproj", "{A1DB2AE5-317C-4AC7-B869-588BA0D0099F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTask.Infrastructure.Data", "MonoTask.Infrastructure.Data\MonoTask.Infrastructure.Data.csproj", "{AFC90FE5-F82D-4F60-A058-6426AFA63A2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTask.UI.WebApi", "MonoTask.UI.WebApi\MonoTask.UI.WebApi.csproj", "{038F0394-0CC8-44C9-B947-C91BF06B9652}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{917E6507-ED0D-4233-8661-C0E2C33B976D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{917E6507-ED0D-4233-8661-C0E2C33B976D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{917E6507-ED0D-4233-8661-C0E2C33B976D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{917E6507-ED0D-4233-8661-C0E2C33B976D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A173527-744A-4055-A11C-D3D3676FCEA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A173527-744A-4055-A11C-D3D3676FCEA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A173527-744A-4055-A11C-D3D3676FCEA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A173527-744A-4055-A11C-D3D3676FCEA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEA6D788-954A-402A-9CB0-E83B3B5628AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA6D788-954A-402A-9CB0-E83B3B5628AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA6D788-954A-402A-9CB0-E83B3B5628AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA6D788-954A-402A-9CB0-E83B3B5628AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1DB2AE5-317C-4AC7-B869-588BA0D0099F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1DB2AE5-317C-4AC7-B869-588BA0D0099F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1DB2AE5-317C-4AC7-B869-588BA0D0099F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1DB2AE5-317C-4AC7-B869-588BA0D0099F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFC90FE5-F82D-4F60-A058-6426AFA63A2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFC90FE5-F82D-4F60-A058-6426AFA63A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFC90FE5-F82D-4F60-A058-6426AFA63A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFC90FE5-F82D-4F60-A058-6426AFA63A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{038F0394-0CC8-44C9-B947-C91BF06B9652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{038F0394-0CC8-44C9-B947-C91BF06B9652}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{038F0394-0CC8-44C9-B947-C91BF06B9652}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{038F0394-0CC8-44C9-B947-C91BF06B9652}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
