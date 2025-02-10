@@ -12,11 +12,13 @@ public class DataContext : DbContext, IDataContext
     {
     }
 
-    public DbSet<VehicleBrandEntity> VehicleBrands { get; set; }
+    public DbSet<UserEntity> Users { get; set; }
     public DbSet<VehicleModelEntity> VehicleModels { get; set; }
+    public DbSet<VehicleBrandEntity> VehicleBrands { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfiguration(new UserEntityMappings());
         modelBuilder.ApplyConfiguration(new VehicleModelEntityMapper());
         modelBuilder.ApplyConfiguration(new VehicleBrandEntityMapper());
     }

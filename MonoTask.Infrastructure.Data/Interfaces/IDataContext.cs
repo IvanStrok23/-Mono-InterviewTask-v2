@@ -6,8 +6,9 @@ namespace MonoTask.Infrastructure.Data.Interfaces;
 public interface IDataContext
 {
 
-    DbSet<VehicleBrandEntity> VehicleBrands { get; set; }
+    DbSet<UserEntity> Users { get; set; }
     DbSet<VehicleModelEntity> VehicleModels { get; set; }
+    DbSet<VehicleBrandEntity> VehicleBrands { get; set; }
 
     Task<T> Get<T>(int id) where T : class, IEntity;
     Task<int> Insert<T>(T entity) where T : class, IEntity;

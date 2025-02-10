@@ -1,0 +1,40 @@
+﻿using MonoTask.Core.Entities.Entities;
+using MonoTask.Core.Interfaces.Services;
+using MonoTask.Infrastructure.Data.Entities;
+using MonoTask.Infrastructure.Data.Helpers;
+using MonoTask.Infrastructure.Data.Interfaces;
+
+namespace MonoTask.Application.Services;
+
+public class UserServices : IUserServices
+{
+    private IDataContext _context;
+
+    public UserServices(IDataContext context)
+    {
+        _context = context;
+    }
+
+    public async Task<User> InsertUser(string name)
+    {
+        var user = new UserEntity
+        {
+            Name = name,
+            Roles = UserRoles.IsClient,
+            Token = Guid.NewGuid().ToString()
+        };
+
+        _context.Users.Add(user);
+        await _context.SaveChangesAsync();
+
+        return new User
+        {
+            Id = user.Id,
+            Name = name,
+            IsAdmin = user.IsAdmin,
+            IsClient = user.IsClient,
+            Token = user.Token,
+            IsSuperAdmin = user.IsSuperAdmin
+        };
+    }
+}

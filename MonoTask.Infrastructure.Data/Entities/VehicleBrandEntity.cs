@@ -10,9 +10,6 @@ public class VehicleBrandEntity : BaseEntity, IEntity
 
     public virtual ICollection<VehicleModelEntity> Models { get; set; }
 
-    public int GetId()
-    {
-        return Id;
-    }
+    public int GetId() => Id;
 
 }

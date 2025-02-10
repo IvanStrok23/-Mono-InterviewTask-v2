@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using MonoTask.Core.Entities.Entities;
 using MonoTask.Core.Interfaces.Services;
 using MonoTask.Core.Models.Dtos;
 using MonoTask.Core.Models.Helpers;
@@ -7,8 +8,6 @@ using MonoTask.Infrastructure.Data.Entities;
 using MonoTask.Infrastructure.Data.Interfaces;
 using MonoTask.Infrastructure.Data.StaticData;
 namespace MonoTask.Application.Services.Vehicle;
-using POCO = Core.Entities.Entities;
-
 public class VehicleModelService : IVehicleModelService
 {
     private readonly IDataContext _dbContext;
@@ -19,7 +18,7 @@ public class VehicleModelService : IVehicleModelService
         _mapper = mapper;
     }
 
-    public async Task<int> InsertModel(POCO.VehicleModel entity)
+    public async Task<int> InsertModel(VehicleModel entity)
     {
         if (entity == null || entity.Id != 0)
         {
@@ -30,13 +29,13 @@ public class VehicleModelService : IVehicleModelService
         return await _dbContext.Insert(mapped);
     }
 
-    public async Task<POCO.VehicleModel> GetModelById(int id)
+    public async Task<VehicleModel> GetModelById(int id)
     {
         var query = await _dbContext.VehicleModels.Where(m => m.Id == id).Include(m => m.VehicleBrand).FirstOrDefaultAsync();
-        return _mapper.Map<POCO.VehicleModel>(query);
+        return _mapper.Map<VehicleModel>(query);
     }
 
-    public async Task<List<POCO.VehicleModel>> GetModels(PagingParams pagingParams)
+    public async Task<List<VehicleModel>> GetModels(PagingParams pagingParams)
     {
 
         var query = _dbContext.VehicleModels.
@@ -45,11 +44,11 @@ public class VehicleModelService : IVehicleModelService
 
         sortByColumn(ref query, pagingParams.SortParams.SortBy, pagingParams.SortParams.SortOrder);
         searchByName(ref query, pagingParams.SortParams.SearchValue);
-        return _mapper.Map<List<POCO.VehicleModel>>(await query.Skip((pagingParams.Page - 1) * 10).Take(10).ToListAsync());
+        return _mapper.Map<List<VehicleModel>>(await query.Skip((pagingParams.Page - 1) * 10).Take(10).ToListAsync());
 
     }
 
-    public async Task<bool> UpdateModel(POCO.VehicleModel model)
+    public async Task<bool> UpdateModel(VehicleModel model)
     {
         VehicleModelEntity temp = _dbContext.VehicleModels.Where(i => i.Id == model.Id).FirstOrDefault();
 
@@ -77,7 +76,6 @@ public class VehicleModelService : IVehicleModelService
         }
         return await _dbContext.Remove(toRemove);
     }
-
 
     private void sortByColumn(ref IQueryable<VehicleModelEntity> query, SortbyEnum sortBy, SortOrderEnum sortOrder)
     {

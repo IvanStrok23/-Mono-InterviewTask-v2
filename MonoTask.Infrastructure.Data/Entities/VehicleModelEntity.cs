@@ -10,8 +10,6 @@ public class VehicleModelEntity : BaseEntity, IEntity
 
     public int VehicleBrandId { get; set; }
     public virtual VehicleBrandEntity VehicleBrand { get; set; }
-    public int GetId()
-    {
-        return Id;
-    }
+
+    public int GetId() => Id;
 }

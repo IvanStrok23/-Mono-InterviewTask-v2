@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using MonoTask.Core.Entities.Entities;
 using MonoTask.Core.Interfaces.Services;
 using MonoTask.Core.Models.Dtos;
 using MonoTask.Core.Models.Helpers;
@@ -8,7 +9,6 @@ using MonoTask.Infrastructure.Data.Entities;
 
 
 namespace MonoTask.Application.Services.Vehicle;
-using POCO = Core.Entities.Entities;
 
 public class VehicleBrandService : IVehicleBrandService
 {
@@ -20,7 +20,7 @@ public class VehicleBrandService : IVehicleBrandService
         _mapper = mapper;
     }
 
-    public async Task<int> InsertMake(POCO.VehicleBrand entity)
+    public async Task<int> InsertMake(VehicleBrand entity)
     {
         if (entity == null || entity.Id != 0)
         {
@@ -32,23 +32,23 @@ public class VehicleBrandService : IVehicleBrandService
         return await _vehiclesDbContext.Insert(mapped);
     }
 
-    public async Task<POCO.VehicleBrand> GetBrandId(int id)
+    public async Task<VehicleBrand> GetBrandId(int id)
     {
         var result = await Task.Run(() => _vehiclesDbContext.Get<VehicleBrandEntity>(id));
-        return _mapper.Map<POCO.VehicleBrand>(result);
+        return _mapper.Map<VehicleBrand>(result);
     }
 
 
-    public async Task<List<POCO.VehicleBrand>> GetBrands(PagingParams pagingParams)
+    public async Task<List<VehicleBrand>> GetBrands(PagingParams pagingParams)
     {
         var query = from make in _vehiclesDbContext.VehicleBrands
                     select make;
         sortByColumn(ref query, pagingParams.SortParams.SortBy, pagingParams.SortParams.SortOrder);
         var result = await Task.Run(() => query.Where(i => i.Name.StartsWith(pagingParams.SortParams.SearchValue)).Skip((pagingParams.Page - 1) * 10).Take(10).ToListAsync());
-        return _mapper.Map<List<POCO.VehicleBrand>>(result);
+        return _mapper.Map<List<VehicleBrand>>(result);
     }
 
-    public async Task<bool> UpdateBrand(POCO.VehicleBrand model)
+    public async Task<bool> UpdateBrand(VehicleBrand model)
     {
         VehicleBrandEntity temp = _vehiclesDbContext.VehicleBrands.Where(i => i.Id == model.Id).FirstOrDefault();
         if (temp == null)
