@@ -49,18 +49,6 @@ public class VehicleModelService : IVehicleModelService
 
     }
 
-    public async Task<List<POCO.VehicleModel>> GetModelsByName(string searchValue)
-    {
-
-        var query = await _dbContext.VehicleModels.
-            Include(m => m.VehicleBrand).
-            OrderBy(i => i.Name).
-            Where(i => i.Name.StartsWith(searchValue)).
-            Take(10).ToListAsync();
-        return _mapper.Map<List<POCO.VehicleModel>>(query);
-
-    }
-
     public async Task<bool> UpdateModel(POCO.VehicleModel model)
     {
         VehicleModelEntity temp = _dbContext.VehicleModels.Where(i => i.Id == model.Id).FirstOrDefault();

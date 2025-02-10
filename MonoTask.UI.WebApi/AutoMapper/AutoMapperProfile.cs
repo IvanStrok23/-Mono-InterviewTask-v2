@@ -12,7 +12,7 @@ public class AutoMapperProfile : Profile
         //i: EF to POCO
         CreateMap<VehicleBrandEntity, POCO.VehicleBrand>();
         CreateMap<VehicleModelEntity, POCO.VehicleModel>()
-           .ForMember(m => m.VehicleMake, a => a.MapFrom(s => s.VehicleBrand));
+           .ForMember(m => m.VehicleBrand, a => a.MapFrom(s => s.VehicleBrand));
 
         //i: POCO to EF
         CreateMap<POCO.VehicleBrand, VehicleBrandEntity>();
@@ -20,15 +20,15 @@ public class AutoMapperProfile : Profile
 
         //i:  POCO to ViewModel
         CreateMap<POCO.VehicleModel, VehicleModelVM>()
-            .ForMember(m => m.MakeName, a => a.MapFrom(s => s.VehicleMake == null ? "" : s.VehicleMake.Name))
-            .ForMember(m => m.MakeId, a => a.MapFrom(s => s.VehicleMake.Id));
-        CreateMap<POCO.VehicleBrand, VehicleMakeVM>();
+            .ForMember(m => m.MakeName, a => a.MapFrom(s => s.VehicleBrand == null ? "" : s.VehicleBrand.Name))
+            .ForMember(m => m.MakeId, a => a.MapFrom(s => s.VehicleBrand.Id));
+        CreateMap<POCO.VehicleBrand, VehicleBrandVM>();
 
 
         //i: ViewModel to POCO
         CreateMap<VehicleModelVM, POCO.VehicleModel>()
             .ForMember(m => m.MakeId, a => a.MapFrom(s => s.MakeId));
-        CreateMap<POCO.VehicleBrand, VehicleMakeVM>();
+        CreateMap<POCO.VehicleBrand, VehicleBrandVM>();
 
     }
 

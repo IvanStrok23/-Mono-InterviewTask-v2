@@ -1,6 +1,6 @@
 ﻿namespace MonoTask.UI.WebApi.Models;
 
-public class VehicleMakeVM
+public class VehicleBrandVM
 {
     public int Id { get; set; }
     public string Name { get; set; }

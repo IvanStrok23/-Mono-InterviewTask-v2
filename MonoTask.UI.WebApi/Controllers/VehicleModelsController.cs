@@ -16,11 +16,11 @@ public class VehicleModelsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetModels([FromBody] TableFilterData sortingData)
+    public async Task<IActionResult> GetModels([FromQuery] TableFilterData sortingData)
     {
         PagingParams param = new PagingParams(sortingData.Page, sortingData.SortBy.ToSortByEnum(), sortingData.SortOrder.ToSortOrderEnum(), sortingData.SearchValue);
-        await _vehicleModelService.GetModels(param);
-        return Ok();
+        var results = await _vehicleModelService.GetModels(param);
+        return Ok(results);
     }
 
     [HttpPost]
