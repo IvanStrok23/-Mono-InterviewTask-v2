@@ -1,4 +1,4 @@
-﻿namespace MonoTask.UI.WebApi.RequestModels;
+﻿namespace MonoTask.UI.WebApi.Models.RequestModels;
 
 public class UserRegistrationDto
 {

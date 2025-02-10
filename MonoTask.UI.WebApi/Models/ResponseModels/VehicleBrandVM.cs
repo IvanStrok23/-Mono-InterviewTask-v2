@@ -1,4 +1,4 @@
-﻿namespace MonoTask.UI.WebApi.Models;
+﻿namespace MonoTask.UI.WebApi.Models.ResponseModels;
 
 public class VehicleBrandVM
 {

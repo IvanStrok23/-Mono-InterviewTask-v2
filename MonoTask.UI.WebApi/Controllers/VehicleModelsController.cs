@@ -2,7 +2,7 @@
 using MonoTask.Core.Interfaces.Services;
 using MonoTask.Core.Models.Dtos;
 using MonoTask.UI.WebApi.Extensions;
-using MonoTask.UI.WebApi.RequestModels;
+using MonoTask.UI.WebApi.Models.RequestModels;
 
 namespace MonoTask.UI.WebApi.Controllers;
 

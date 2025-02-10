@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MonoTask.Core.Entities.Entities;
 using MonoTask.Infrastructure.Data.Entities;
-using MonoTask.UI.WebApi.Models;
+using MonoTask.UI.WebApi.Models.ResponseModels;
 
 namespace MonoTask.UI.WebApi.AutoMapper;
 
