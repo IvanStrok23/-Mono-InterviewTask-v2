@@ -17,9 +17,10 @@ public class UserEntityMapper : IEntityTypeConfiguration<UserEntity>
                .HasConversion<int>()
                .IsRequired();
 
-        builder.Property(u => u.Token)
-               .IsRequired()
-               .HasDefaultValueSql("NEWID()");
+        builder.HasOne(u => u.Token)
+               .WithOne(t => t.User)
+               .HasForeignKey<UserEntity>(u => u.TokenId)
+               .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasMany(u => u.UserVehicles)
                .WithOne(uv => uv.User)

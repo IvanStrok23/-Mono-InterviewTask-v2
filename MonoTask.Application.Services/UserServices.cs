@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using MonoTask.Core.Entities.Entities;
 using MonoTask.Core.Interfaces.Services;
 using MonoTask.Infrastructure.Data.Entities;
@@ -24,10 +25,29 @@ public class UserServices : IUserServices
         {
             Name = name,
             Roles = UserRoles.IsClient,
-            Token = Guid.NewGuid().ToString()
         };
+        int userId = await _context.Insert(user);
 
-        _context.Users.Add(user);
+        var userToken = new UserToken(userId);
+        await _context.Insert(userToken);
+
+        user.Token = userToken;
+        await _context.SaveChangesAsync();
+
+        return _mapper.Map<User>(user);
+    }
+
+    public async Task<User> RefreshToken(string refreshToken)
+    {
+        var user = await _context.Users
+            .Include(x => x.Token)
+            .FirstOrDefaultAsync(u => u.Token.RefreshToken == refreshToken);
+
+        if (user == null)
+        {
+            throw new ArgumentException("Can't authorize");
+        }
+        user.Token.RefreshAccessToken();
         await _context.SaveChangesAsync();
 
         return _mapper.Map<User>(user);

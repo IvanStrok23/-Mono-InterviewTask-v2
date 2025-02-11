@@ -8,15 +8,12 @@ public class UserEntity : BaseEntity, IEntity
     public int Id { get; set; }
     public string Name { get; set; }
     public UserRoles Roles { get; set; }
-    public string Token { get; set; }
+
+    public int? TokenId { get; set; }
+    public virtual UserToken Token { get; set; }
 
     //todo: is this needed?
     public ICollection<UserVehicle> UserVehicles { get; set; } = new List<UserVehicle>();
-
-    public UserEntity()
-    {
-        Token = Guid.NewGuid().ToString();
-    }
 
     public int GetId() => Id;
 

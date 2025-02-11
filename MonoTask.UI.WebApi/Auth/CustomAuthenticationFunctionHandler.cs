@@ -62,8 +62,7 @@ namespace MonoTask.UI.WebApi.Auth
 
         private async Task<UserEntity?> ValidateTokenAndExtractUserInfoAsync(string token)
         {
-            // we can simulate token validation here
-            return await _context.Users.FirstOrDefaultAsync(u => u.Token == token);
+            return await _context.Users.FirstOrDefaultAsync(u => u.Token.AccessToken == token);
         }
 
     }

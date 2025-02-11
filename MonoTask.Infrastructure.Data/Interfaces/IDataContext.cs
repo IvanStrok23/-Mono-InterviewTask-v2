@@ -7,6 +7,7 @@ public interface IDataContext
 {
 
     DbSet<UserEntity> Users { get; set; }
+    DbSet<UserToken> UserTokens { get; set; }
     DbSet<UserVehicle> UserVehicles { get; set; }
     DbSet<VehicleModelEntity> VehicleModels { get; set; }
     DbSet<VehicleBrandEntity> VehicleBrands { get; set; }

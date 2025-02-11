@@ -10,7 +10,8 @@ public class AutoMapperProfile : Profile
     public AutoMapperProfile()
     {
         //i: EF to POCO
-        CreateMap<UserEntity, User>();
+        CreateMap<UserEntity, User>()
+            .ForMember(m => m.AccessToken, a => a.MapFrom(s => s.Token.AccessToken));
         CreateMap<VehicleBrandEntity, VehicleBrand>();
         CreateMap<VehicleModelEntity, VehicleModel>()
            .ForMember(m => m.Brand, a => a.MapFrom(s => s.VehicleBrand));

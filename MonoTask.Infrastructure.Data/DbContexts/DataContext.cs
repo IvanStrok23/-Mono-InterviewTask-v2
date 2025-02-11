@@ -13,6 +13,7 @@ public class DataContext : DbContext, IDataContext
     }
 
     public DbSet<UserEntity> Users { get; set; }
+    public DbSet<UserToken> UserTokens { get; set; }
     public DbSet<UserVehicle> UserVehicles { get; set; }
     public DbSet<VehicleModelEntity> VehicleModels { get; set; }
     public DbSet<VehicleBrandEntity> VehicleBrands { get; set; }
