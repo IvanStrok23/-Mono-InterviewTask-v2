@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTask.Core.Interfaces", "MonoTask.Core.Services\MonoTask.Core.Interfaces.csproj", "{917E6507-ED0D-4233-8661-C0E2C33B976D}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTask.Infrastructure.Data", "MonoTask.Infrastructure.Data\MonoTask.Infrastructure.Data.csproj", "{AFC90FE5-F82D-4F60-A058-6426AFA63A2C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTask.UI.WebApi", "MonoTask.UI.WebApi\MonoTask.UI.WebApi.csproj", "{038F0394-0CC8-44C9-B947-C91BF06B9652}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTask.Tests", "MonoTask.Tests\MonoTask.Tests.csproj", "{55B87CB3-3FED-4CAD-83A0-19E96C0CF16C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{038F0394-0CC8-44C9-B947-C91BF06B9652}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{038F0394-0CC8-44C9-B947-C91BF06B9652}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{038F0394-0CC8-44C9-B947-C91BF06B9652}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55B87CB3-3FED-4CAD-83A0-19E96C0CF16C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55B87CB3-3FED-4CAD-83A0-19E96C0CF16C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55B87CB3-3FED-4CAD-83A0-19E96C0CF16C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55B87CB3-3FED-4CAD-83A0-19E96C0CF16C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

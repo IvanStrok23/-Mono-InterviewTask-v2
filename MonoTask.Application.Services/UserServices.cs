@@ -39,9 +39,9 @@ public class UserServices : IUserServices
 
     public async Task<User> RefreshToken(string refreshToken)
     {
-        var user = await _context.Users
+        var user = _context.Users
             .Include(x => x.Token)
-            .FirstOrDefaultAsync(u => u.Token.RefreshToken == refreshToken);
+            .FirstOrDefault(u => u.Token.RefreshToken == refreshToken);
 
         if (user == null)
         {

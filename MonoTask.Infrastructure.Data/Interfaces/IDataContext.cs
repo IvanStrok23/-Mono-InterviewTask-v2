@@ -5,7 +5,6 @@ namespace MonoTask.Infrastructure.Data.Interfaces;
 
 public interface IDataContext
 {
-
     DbSet<UserEntity> Users { get; set; }
     DbSet<UserToken> UserTokens { get; set; }
     DbSet<UserVehicle> UserVehicles { get; set; }
