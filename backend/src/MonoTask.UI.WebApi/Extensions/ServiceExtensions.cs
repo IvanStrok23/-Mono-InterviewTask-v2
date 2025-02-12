@@ -72,9 +72,13 @@ public static class ServiceExtensions
 
     public static void AddAuthorizationServices(this IServiceCollection services)
     {
+
+        services.AddSingleton<IAuthorizationHandler, DefaultAuthorizeHandler>();
+        services.AddSingleton<IAuthorizationPolicyProvider, DefaultAuthorizationPolicyProvider>();
         services.AddAuthorization(options =>
         {
             options.AddPolicy("IsClient", policy => policy.Requirements.Add(new IsClientRequirement()));
+            options.DefaultPolicy = new AuthorizationPolicyBuilder().AddRequirements(new DefaultUserRequirement()).Build();
         });
 
         services.AddSingleton<IAuthorizationHandler, IsClientHandler>();

@@ -44,16 +44,20 @@ namespace MonoTask.Tests.Services
             {
                 // Arrange
                 var name = "Test User";
+                var email = "Test User";
+                var password = "Test User";
 
                 // Act
-                var result = await _userServices.InsertUser(name);
+                var user = await _userServices.InsertUser(name, email, password);
 
                 // Assert
-                var addedUser = _context.Users.FirstOrDefault(t => t.Id == result.Id);
+                var addedUser = _context.Users.FirstOrDefault(t => t.Id == user.Id);
                 Assert.That(addedUser, Is.Not.Null);
                 Assert.That(addedUser.Name, Is.EqualTo(name));
+                Assert.That(addedUser.Email, Is.EqualTo(email));
+                Assert.That(addedUser.Password, Is.EqualTo(password));
 
-                var addedToken = _context.UserTokens.FirstOrDefault(t => t.UserId == result.Id);
+                var addedToken = _context.UserTokens.FirstOrDefault(t => t.Id == addedUser.TokenId);
                 Assert.That(addedToken, Is.Not.Null);
                 Assert.That(addedToken.AccessToken, Is.Not.Empty);
                 Assert.That(addedToken.RefreshToken, Is.Not.Empty);

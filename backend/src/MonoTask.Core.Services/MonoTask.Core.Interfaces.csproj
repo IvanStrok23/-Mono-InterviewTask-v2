@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Core.Entities\MonoTask.Core.Entities.csproj" />
     <ProjectReference Include="..\MonoTask.Core.Models\MonoTask.Core.Models.csproj" />
+    <ProjectReference Include="..\MonoTask.Infrastructure.Data\MonoTask.Infrastructure.Data.csproj" />
   </ItemGroup>
 
 </Project>

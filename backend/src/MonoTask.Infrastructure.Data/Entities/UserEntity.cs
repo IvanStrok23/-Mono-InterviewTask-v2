@@ -7,6 +7,8 @@ public class UserEntity : BaseEntity, IEntity
 {
     public int Id { get; set; }
     public string Name { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; }
     public UserRoles Roles { get; set; }
 
     public int? TokenId { get; set; }

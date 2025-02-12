@@ -13,6 +13,14 @@ public class UserEntityMapper : IEntityTypeConfiguration<UserEntity>
         builder.Property(u => u.Name)
                .IsRequired();
 
+        builder.Property(u => u.Email)
+               .IsRequired()
+               .HasMaxLength(255);
+
+        builder.Property(u => u.Password)
+               .IsRequired()
+               .HasMaxLength(255); // Assuming hashed passwords, adjust as needed.
+
         builder.Property(u => u.Roles)
                .HasConversion<int>()
                .IsRequired();
@@ -29,3 +37,4 @@ public class UserEntityMapper : IEntityTypeConfiguration<UserEntity>
         builder.ToTable("Users");
     }
 }
+
